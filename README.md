@@ -21,7 +21,7 @@ Uma API não oficial em desenvolvimento para coletar e estruturar notícias do p
 
 ## 📌 Sobre o Projeto
 
-O **G1 API Unofficial** é uma biblioteca desenvolvida em Python voltada para fazer web scraping do portal de notícias [G1](https://g1.globo.com/). O objetivo principal é transformar páginas HTML instáveis em dados estruturados legíveis por máquinas. 
+O **G1 API Unofficial** é uma API desenvolvida em Python voltada para fazer web scraping do portal de notícias [G1](https://g1.globo.com/). O objetivo principal é transformar páginas HTML instáveis em dados estruturados legíveis por máquinas. 
 
 Dessa forma, fica muito mais fácil integrar informações em tempo real do G1 a bots do Telegram/Discord, dashboards de monitoramento, pipelines de dados ou sistemas automatizados.
 
