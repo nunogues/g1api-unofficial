@@ -4,16 +4,12 @@
 
 **An unofficial REST API that turns G1 headlines into clean, structured JSON.**
 
-[
 
 ![Live API](https://img.shields.io/badge/Live%20API-online-22c55e?style=flat-square&logo=render&logoColor=white)
 
-](https://g1api-unofficial.onrender.com/)
-[
 
 ![Docs](https://img.shields.io/badge/Swagger-docs-0ea5e9?style=flat-square&logo=swagger&logoColor=white)
 
-](https://g1api-unofficial.onrender.com/docs)
 
 
 ![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white)
