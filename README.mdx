@@ -1,150 +1,242 @@
-<div align="center">
+export const g1 = {
+  red: '#C4170C',
+  redDark: '#9E1209',
+  white: '#FFFFFF',
+}
 
-# G1 API Unofficial
+<style>{`
+  .g1-readme {
+    background: #C4170C;
+    color: #FFFFFF;
+    padding: 40px 32px;
+    border-radius: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.7;
+  }
+  .g1-readme h1,
+  .g1-readme h2,
+  .g1-readme h3 {
+    color: #FFFFFF;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  .g1-readme h2 {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.35);
+    padding-bottom: 8px;
+    margin-top: 40px;
+  }
+  .g1-readme a {
+    color: #FFFFFF;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .g1-readme a:hover {
+    opacity: 0.8;
+  }
+  .g1-readme code {
+    background: rgba(0, 0, 0, 0.28);
+    color: #FFFFFF;
+    padding: 2px 7px;
+    border-radius: 5px;
+    font-size: 0.92em;
+  }
+  .g1-readme pre {
+    background: #7A0E07;
+    color: #FFFFFF;
+    padding: 16px 18px;
+    border-radius: 8px;
+    overflow-x: auto;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+  }
+  .g1-readme pre code {
+    background: transparent;
+    padding: 0;
+  }
+  .g1-readme table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+  }
+  .g1-readme th {
+    background: #FFFFFF;
+    color: #C4170C;
+    text-align: left;
+    padding: 10px 12px;
+  }
+  .g1-readme td {
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  .g1-readme blockquote {
+    border-left: 4px solid #FFFFFF;
+    margin: 16px 0;
+    padding: 4px 16px;
+    background: rgba(0, 0, 0, 0.18);
+    border-radius: 0 8px 8px 0;
+  }
+  .g1-readme hr {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.35);
+    margin: 32px 0;
+  }
+  .g1-badge {
+    display: inline-block;
+    background: #FFFFFF;
+    color: #C4170C !important;
+    text-decoration: none !important;
+    font-weight: 800;
+    padding: 8px 16px;
+    border-radius: 999px;
+    margin: 4px 8px 4px 0;
+  }
+  .g1-badge:hover {
+    opacity: 1 !important;
+    background: #FFE3E0;
+  }
+`}</style>
 
-Notícias do G1 coletadas, estruturadas e organizadas com Python.
+<div className="g1-readme">
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0:111827,100:2563eb&height=180&section=header&text=G1%20API&fontSize=55&fontColor=ffffff&desc=Unofficial%20News%20Data%20Project&descSize=16&descAlignY=72" width="100%" alt="G1 API Unofficial banner"/>
+# G1 API
 
-[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![Requests](https://img.shields.io/badge/Requests-2E8B57?style=for-the-badge)](https://requests.readthedocs.io/)
-[![BeautifulSoup](https://img.shields.io/badge/BeautifulSoup-4B8BBE?style=for-the-badge)](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
-[![Status](https://img.shields.io/badge/Status-In%20Development-orange?style=for-the-badge)](https://github.com/nunogues/g1api-unofficial)
+An unofficial REST API that collects news from **G1** (<https://g1.globo.com/>) and provides structured data through HTTP endpoints.
 
-Uma API não oficial em desenvolvimento para coletar e estruturar notícias do portal G1.
+<a className="g1-badge" href="https://g1api-unofficial.onrender.com/">🔴 Live API</a>
+<a className="g1-badge" href="https://g1api-unofficial.onrender.com/docs">📖 Swagger UI</a>
 
-[Repositório](https://github.com/nunogues/g1api-unofficial) · [Reportar um problema](https://github.com/nunogues/g1api-unofficial/issues)
+## Features
 
-</div>
+- Retrieve news from the G1 homepage.
+- Search news by title and summary.
+- Access article metadata, including publication dates and image URLs when available.
+- In-memory caching with a 60-second expiration time.
+- Interactive API documentation powered by FastAPI.
+- Query parameter validation for news limits.
 
----
+## Tech Stack
 
-## 📌 Sobre o Projeto
+- **Python** — core language
+- **FastAPI** — REST API framework
+- **Requests** — HTTP requests
+- **Beautiful Soup** — HTML parsing
+- **Pydantic** — data validation
 
-O **G1 API Unofficial** é uma API desenvolvida em Python voltada para fazer web scraping do portal de notícias [G1](https://g1.globo.com/). O objetivo principal é transformar páginas HTML instáveis em dados estruturados legíveis por máquinas. 
+## API Endpoints
 
-Dessa forma, fica muito mais fácil integrar informações em tempo real do G1 a bots do Telegram/Discord, dashboards de monitoramento, pipelines de dados ou sistemas automatizados.
+| Method | Endpoint       | Description                     |
+| ------ | -------------- | ------------------------------- |
+| `GET`  | `/`            | API information                 |
+| `GET`  | `/health`      | Health check                    |
+| `GET`  | `/news`        | Retrieve news                   |
+| `GET`  | `/news/search` | Search news by title or summary |
+| `GET`  | `/docs`        | Interactive API documentation   |
 
-## ✨ Funcionalidades
+### Get News
 
-- [x] Realizar requisições HTTP seguras e otimizadas ao portal G1.
-- [x] Mapear e parsear o HTML utilizando BeautifulSoup4.
-- [x] Capturar e isolar os blocos de notícias direto da página inicial.
-- [ ] Extrair links das matérias em destaque de forma dinâmica.
-- [ ] Crawlear páginas individuais de notícias de maneira assíncrona/sequencial.
-- [ ] Extrair metadados refinados (títulos, imagens de capa, data de publicação e corpo de texto).
-- [ ] Formatar o payload final das respostas inteiramente em JSON estruturado.
-- [ ] Expor endpoints locais por meio de uma API HTTP integrada (FastAPI/Flask).
-- [ ] Implementar políticas robustas de retentativas, tratamento de erros e timeouts.
+Retrieve news collected from the G1 homepage.
 
-> ⚠️ **Nota:** O projeto encontra-se em fase de desenvolvimento ativo. Os itens desmarcados representam o Roadmap do projeto e serão implementados gradativamente.
-
-## 🛠️ Tecnologias Utilizadas
-
-| Tecnologia | Finalidade |
-| :--- | :--- |
-| **[Python](https://www.python.org/)** | Linguagem de programação core do projeto. |
-| **[Requests](https://requests.readthedocs.io/)** | Cliente HTTP para buscar páginas Web e contornar bloqueios simples de rede. |
-| **[BeautifulSoup4](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)** | Extração, navegação e manipulação fina da árvore de elementos DOM HTML. |
-
-## 📐 Como Funciona a Arquitetura
-
-O fluxo lógico de extração foi idealizado para isolar responsabilidades e garantir que mudanças no layout do portal G1 afetem o menor número de módulos possível:
-
-```mermaid
-flowchart TD
-    A[Portal G1] -->|Requests HTTP| B[HTML Bruto da Home]
-    B -->|Instanciação| C[BeautifulSoup4 Parser]
-    C -->|Filtro de seletores| D[Isolamento de Cards de Notícia]
-    D -->|Mapeamento| E[Fila de Links Extraídos]
-    E -->|Nova Requisição| F[Páginas de Matérias Individuais]
-    F -->|Parsing de Conteúdo| G[Limpeza de Texto, Imagens e Datas]
-    G -->|Serialização| H[Dados Prontos em JSON]
+```http
+GET /news?limit=5
 ```
 
-## 🚀 Instalação e Configuração
+**Query parameters**
 
-Certifique-se de ter o Python 3.8+ instalado em sua máquina.
+| Parameter | Type    | Default | Constraints |
+| --------- | ------- | ------- | ----------- |
+| `limit`   | integer | `10`    | 1–20        |
 
-1. **Clone o repositório:**
-   ```bash
-   git clone https://github.com/nunogues/g1api-unofficial.git
-   ```
+<a className="g1-badge" href="https://g1api-unofficial.onrender.com/news?limit=5">▶ Try this endpoint</a>
 
-2. **Acesse o diretório do projeto:**
-   ```bash
-   cd g1api-unofficial
-   ```
+### Search News
 
-3. **Instale as dependências obrigatórias:**
-   ```bash
-   pip install -r requirements.txt
-   ```
-   *(Ou instale manualmente via: `pip install requests beautifulsoup4`)*
+Search collected news by title or summary.
 
-## 💻 Exemplo Prático de Uso
-
-O script abaixo mostra uma demonstração simples de como capturar os cabeçalhos principais (`<h2>`) renderizados no feed principal do portal G1:
-
-```python
-import requests
-from bs4 import BeautifulSoup
-
-def fetch_g1_headlines():
-    url = "https://g1.globo.com/"
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-    }
-
-    try:
-        # Requisição com timeout de segurança configurado
-        response = requests.get(url, headers=headers, timeout=10)
-        response.raise_for_status()
-        
-        soup = BeautifulSoup(response.text, "html.parser")
-        
-        print("=== Manchetes Encontradas na Home ===")
-        for heading in soup.find_all("h2"):
-            title = heading.get_text(" ", strip=True)
-            if title:
-                print(f"📌 {title}")
-                
-    except requests.exceptions.RequestException as e:
-        print(f"Erro ao acessar o portal G1: {e}")
-
-if __name__ == "__main__":
-    fetch_g1_headlines()
+```http
+GET /news/search?q=tecnologia
 ```
 
-> 💡 **Informação Importante:** Este snippet é um protótipo didático para testes locais. Ele captura todos os seletores HTML correspondentes na página atual e não valida se o texto recuperado se trata de uma notícia factual ou de um link interno.
+**Query parameters**
 
-## 📊 Estrutura dos Dados Obtidos (Schema Alvo)
+| Parameter | Type    | Description                                         |
+| --------- | ------- | --------------------------------------------------- |
+| `q`       | string  | Search term                                         |
+| `limit`   | integer | Maximum number of results (default: 10, range: 1–20) |
 
-Após a normalização, o formato padrão de payload retornado pelas consultas internas seguirá rigorosamente este modelo JSON estruturado:
+<a className="g1-badge" href="https://g1api-unofficial.onrender.com/news/search?q=tecnologia">▶ Try this endpoint</a>
+
+> Search is performed on the news currently available in the API's cache. It does not search the entire G1 archive.
+
+### Example Response
 
 ```json
-{
-  "title": "Título limpo e formatado extraído da matéria",
-  "url": "https://globo.com",
-  "image": "https://glbimg.com",
-  "published_at": "2026-10-24T17:09:00Z",
-  "content": "Corpo completo da matéria textual estruturada e limpa sem tags HTML residuais."
-}
+[
+  {
+    "title": "Example news headline",
+    "url": "https://g1.globo.com/example",
+    "image_url": "https://example.com/image.jpg",
+    "summary": "A short description of the news article.",
+    "published_at": "2026-10-26T10:00:00",
+    "updated_at": "2026-10-26T11:00:00"
+  }
+]
 ```
 
-## ⚖️ Isenção de Responsabilidade (Disclaimer)
+> The response above is illustrative. Actual values depend on the metadata available on G1.
 
-* Este projeto possui fins estritamente acadêmicos, didáticos e de estudo sobre engenharia de dados e Web Scraping.
-* Não possui qualquer afiliação oficial, patrocínio ou suporte legal do Grupo Globo ou do portal G1 de Notícias.
-* Certifique-se de usar este software de forma consciente e respeitosa, mantendo taxas de requisições toleráveis para evitar sobrecarga (DoS) nas plataformas de origem de acordo com as diretrizes do arquivo `robots.txt` do domínio correspondente.
+## Run Locally
 
-## 👤 Autor
+### 1. Clone the repository
 
-Desenvolvido por **[@nunogues](https://github.com/nunogues)**. Se o projeto te ajudou ou foi útil de alguma maneira, sinta-se à vontade para deixar uma 🌟 no repositório!
+```bash
+git clone https://github.com/nunogues/g1api-unofficial.git
+cd g1api-unofficial
+```
+
+### 2. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Start the development server
+
+```bash
+uvicorn app.main:app --reload
+```
+
+The API will be available at:
+
+- **Base URL:** <http://127.0.0.1:8000>
+- **Interactive documentation:** <http://127.0.0.1:8000/docs>
+
+## Caching
+
+The API uses an in-memory cache with a 60-second time-to-live (TTL). News data is reused during this period to reduce repeated requests to the source website.
+
+The cache is reset when the application restarts and is not shared between separate server processes.
+
+## Limitations
+
+- News collection depends on G1's website structure and publicly accessible metadata.
+- The number of returned articles depends on successful extraction; the API may return fewer results than requested.
+- The API does not provide the full text of news articles.
+- Availability depends on the hosting service and the source website.
+
+## Disclaimer
+
+This is an independent, unofficial project and is not affiliated with, endorsed by, or sponsored by G1 or Grupo Globo.
+
+News content and trademarks belong to their respective owners. This project provides links and extracted metadata for informational and educational purposes.
+
+## Author
+
+**nunogues**
+
+<a className="g1-badge" href="https://github.com/nunogues">GitHub Profile</a>
 
 ---
-<div align="center">
 
-Construído com 🐍 Python para fins de aprendizado, automação e exploração de dados livres.
+*Built as a Python project to explore web scraping, REST API development, caching, and deployment.*
 
 </div>
